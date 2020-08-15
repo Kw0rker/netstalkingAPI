@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class utils {
     @SneakyThrows
-    static synchronized public String getRedirect(String url)  {
+    static  public String getRedirect(String url)  {
         Thread.sleep(30);
         HttpURLConnection con = (HttpURLConnection)(new URL( url ).openConnection());
         con.setInstanceFollowRedirects( false );
