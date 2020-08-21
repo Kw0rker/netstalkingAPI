@@ -27,7 +27,7 @@ public abstract class API {
         out = new PrintWriter(socket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         try {
-            int iteration=Integer.parseInt(params);
+            int iteration=Math.abs(Integer.parseInt(params));
             for (int i = 0; i < iteration; i++) {
                 try {
                     respond();
@@ -47,18 +47,24 @@ public abstract class API {
                 }
             }
             else {
+                out.write(" use number as second param");
                 logger.info("bad param parsed: "+params);
             }
         }
-
+        socket.close();
+        logger.info("request completed");
     }
     private   void respond() throws RuntimeException{
+        String link=generator.generate();
         try {
-            out.write(validator.validate(generator.generate()));
+            link=validator.validate(link);
+            logger.debug("link generated successfully: "+link);
+            out.write(link+"\n");
+            out.flush();
         }
         catch (RuntimeException e){
-            logger.info("generated  invalid link");
-            throw new RuntimeException("invalid link");
+            logger.debug("generated  invalid link: "+link);
+            throw new RuntimeException("invalid link:+ ");
         }
     }
 }

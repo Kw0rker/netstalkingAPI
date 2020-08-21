@@ -9,7 +9,7 @@ public class imgurValidator implements validator {
     public String validate(String link) {
         String redirect=utils.getRedirect(link);
         if (redirect==null)return link;
-        return "";
+        throw new RuntimeException("invalid link");
     }
 
     public List<String> validate(List<String> links) {

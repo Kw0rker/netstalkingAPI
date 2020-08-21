@@ -12,7 +12,7 @@ import java.net.Socket;
 public class imgurAPI extends API  {
     static private Logger logger = Logger.getLogger(imgurAPI.class);
 
-    imgurAPI(Socket socket, String params) {
+    public imgurAPI(Socket socket, String params) {
         super(socket, params,logger,new imgurGenerator(),new imgurValidator());
     }
 

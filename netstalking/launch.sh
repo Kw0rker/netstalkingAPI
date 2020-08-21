@@ -1,0 +1,1 @@
+nohup java -Dfile.encoding=UTF-8 -jar netstaling.jar
