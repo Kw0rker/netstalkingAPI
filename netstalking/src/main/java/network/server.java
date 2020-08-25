@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 public class server {
     static private Logger logger;
-    private HashMap<Socket,String> ipMap=new HashMap<>();
+    static public HashMap<String,Socket> ipMap=new HashMap<>();
     server(int port){
         String log4jConfigFile = System.getProperty("user.dir")
                 + File.separator + "log4j.properties";
@@ -52,7 +52,7 @@ public class server {
                     }
                 }).start();
                 Thread.sleep(100);
-                ipMap.put(client,client.getInetAddress().toString());
+                ipMap.put(client.getInetAddress().toString(),client);
             }
         } catch (IOException | InterruptedException e) {
             logger.error(e);

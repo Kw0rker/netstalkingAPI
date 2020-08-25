@@ -1,6 +1,7 @@
 package API;
 
 import lombok.SneakyThrows;
+import network.server;
 import org.apache.log4j.Logger;
 import parsers.generators.generator;
 import parsers.validators.validator;
@@ -38,7 +39,12 @@ public abstract class API {
             }
         }
         catch (NumberFormatException e){
-            if (params.equals("stream")){
+            if (params.equals("stop")){
+                Socket client_to_remove=server.ipMap.get(socket.getInetAddress().toString());
+                if (client_to_remove!=null)client_to_remove.close();
+                server.ipMap.remove(socket.getInetAddress().toString());
+            }
+            else if (params.equals("stream")){
                 while (socket.isConnected()){
                     try {
                         respond();
