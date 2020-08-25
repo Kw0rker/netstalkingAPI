@@ -9,6 +9,6 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
-
+!log4j.properties
 /netstalking/log4j.properties
 /netstalking/netstalking.iml
